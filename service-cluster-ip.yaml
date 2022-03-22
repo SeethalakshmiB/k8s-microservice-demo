@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc-cluster
+  labels:
+    run: nginx-svc-cluster
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080 # nginx-svc:8080 --> nginx:80
+    targetPort: 80 # app container's port
+    protocol: TCP
+    name: http
+  selector:
+    app: nginx-app

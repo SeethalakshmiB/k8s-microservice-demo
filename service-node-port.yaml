@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc-node
+  labels:
+    run: nginx-svc-node
+spec:
+  type: NodePort
+  ports:
+  - port: 8080 # nginx-svc:8080 --> nginx:80
+    targetPort: 80 # app container's port
+    nodePort: 30000 # localhost/mikube_ip:30000 30000-32767, Optional field
+    protocol: TCP
+    name: http
+  selector:
+    app: nginx-app

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: demo
+    tier: frontend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx-example
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      - name: pap-tomcat
+        image: seetha123/pac_tomcat:latest
